@@ -21,35 +21,38 @@ int select_option() {
         if (scanf("%d", &option) != 1) {      // Comprueba si se ha leído un entero
             while (getchar() != '\n');              // Descarta el resto de la entrada hasta el salto de línea
         } else if (option >= 1 && option <= 4) {    // Comprueba si la opción es válida
+            printf("\n");
+            printf("\n");
             return option;
         }
         printf("Opcio incorrecta. Torna a intentar.\n");
     }
 }
 
-int print_option(int option){
+int print_option(int option, user_list *Llista){
     if (option == 1){
-        User usuari;
-        user_list Llista;
-        printf("INSERTAR NOU USUARI\n");
-        emmagatzema_dades(&usuari);
-        Llista.user_position[Llista.num_persones] = &usuari;
-        Llista.num_persones ++;
+        User *usuari = (User *) malloc(sizeof(User));
+        printf("------INSERTAR NOU USUARI------\n");
+        emmagatzema_dades(usuari, Llista);
+        afegir_usuari(Llista, usuari);
+
     } else if (option == 2){
-        printf("LLISTAR TOTS ELS USUARIS EXSISTENTS");
+        printf("------LLISTAR TOTS ELS USUARIS EXSISTENTS------\n");
+        print_users(Llista);
     } else if (option == 3){
-        printf("\nQuin usuari ets?\n");
+        printf("\n---Quin usuari ets?---\n");
         printf("\n");
-        printf("| 1. Enviar solicituds d'amistat   |\n");
-        printf("| 2. Gestionar solicituds pendents |\n");
-        printf("| 3. Realitzar una publicacio      |\n");
-        printf("| 4. Llistar les publicacions      |\n");
+        printf("---| 1. Enviar solicituds d'amistat   |---\n");
+        printf("---| 2. Gestionar solicituds pendents |---\n");
+        printf("---| 3. Realitzar una publicacio      |---\n");
+        printf("---| 4. Llistar les publicacions      |---\n");
+        printf("\n");
     } else if (option == 4) {
         return 1;
     }
 }
 
-void emmagatzema_dades(User *usuari) {
+void emmagatzema_dades(User *usuari, user_list *Llista) {
     printf("Introdueix el teu nom: \n");
     scanf("%s", usuari->nom);
     printf("Introdueix el teu primer cognom: \n");
@@ -63,9 +66,32 @@ void emmagatzema_dades(User *usuari) {
     printf("Introdueix la teva ubicacio: \n");
     scanf("%s", usuari->ubi);
     printf("Introdueix els teus 5 gustos preferits (un per linia):\n");
-    scanf("%s", usuari->gustos.gust1);
-    scanf("%s", usuari->gustos.gust2);
-    scanf("%s", usuari->gustos.gust3);
-    scanf("%s", usuari->gustos.gust4);
-    scanf("%s", usuari->gustos.gust5);
+    scanf("%s", usuari->gust1);
+    scanf("%s", usuari->gust2);
+    scanf("%s", usuari->gust3);
+    scanf("%s", usuari->gust4);
+    scanf("%s", usuari->gust5);
+    usuari->next = NULL;
+}
+
+void afegir_usuari(user_list* llista, User* usuari) {
+    if (llista->head == NULL) {
+        llista->head = usuari;
+    } else {
+        User* temp = llista->head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = usuari;
+    }
+    llista->num_persones++;
+}
+
+void print_users(user_list *Llista) {
+    User *current = Llista->head;
+    while (current != NULL) {
+        printf("          |    %s    |\n", current->nom);
+        current = current->next;
+    }
+    printf("\n");
 }
