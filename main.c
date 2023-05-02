@@ -7,7 +7,7 @@ int main() {
     Llista.head = NULL;
     Llista.num_persones = 0;
     while (a != 0) {
-        int option1, option2;
+        int option1;
         menu();
         option1 = select_option();
         print_option(option1, &Llista);

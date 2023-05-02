@@ -1,3 +1,3 @@
-D:/JAN/EDA-P/cmake-build-debug/CMakeFiles/EDA_P.dir
-D:/JAN/EDA-P/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/JAN/EDA-P/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/janpr/Documents/Clion/EDA-P/cmake-build-debug/CMakeFiles/EDA_P.dir
+C:/Users/janpr/Documents/Clion/EDA-P/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/janpr/Documents/Clion/EDA-P/cmake-build-debug/CMakeFiles/rebuild_cache.dir
