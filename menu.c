@@ -33,14 +33,24 @@ int print_option(int option, user_list *Llista){
     if (option == 1){
         User *usuari = (User *) malloc(sizeof(User));
         printf("------INSERTAR NOU USUARI------\n");
-        emmagatzema_dades(usuari, Llista);
+        emmagatzema_dades(usuari);
         afegir_usuari(Llista, usuari);
 
     } else if (option == 2){
         printf("------LLISTAR TOTS ELS USUARIS EXSISTENTS------\n");
         print_users(Llista);
     } else if (option == 3){
+        char usuari[MAX_LENGTH];
         printf("\n---Quin usuari ets?---\n");
+        print_users(Llista);
+        scanf("%s", usuari);
+        User *current = Llista->head;
+        while (current != NULL) {
+            if (strcmp(usuari, current->nom) == 0) {
+                checkPassword(current);
+            }
+            current = current->next;
+        }
         printf("\n");
         printf("---| 1. Enviar solicituds d'amistat   |---\n");
         printf("---| 2. Gestionar solicituds pendents |---\n");
@@ -52,9 +62,11 @@ int print_option(int option, user_list *Llista){
     }
 }
 
-void emmagatzema_dades(User *usuari, user_list *Llista) {
+void emmagatzema_dades(User *usuari) {
     printf("Introdueix el teu nom: \n");
     scanf("%s", usuari->nom);
+    printf("Introdueix la contrasenya: \n");
+    scanf("%s", usuari->password);
     printf("Introdueix el teu primer cognom: \n");
     scanf("%s", usuari->cognom1);
     printf("Introdueix el teu segon cognom: \n");
@@ -94,4 +106,21 @@ void print_users(user_list *Llista) {
         current = current->next;
     }
     printf("\n");
+}
+
+void checkPassword(User *usuari) {
+    char input[20];
+    int correct = 0;
+
+    while (!correct) {
+        printf("Introdueix la contrasenya: ");
+        scanf("%s", input);
+
+        if (strcmp(input, usuari->password) == 0) {
+            printf("Benvingut %s!,\n",usuari->nom);
+            correct = 1;
+        } else {
+            printf("Contrasenya incorrecta. Intenta-ho de nou.\n");
+        }
+    }
 }

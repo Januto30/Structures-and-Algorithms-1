@@ -5,6 +5,7 @@
 
 typedef struct {
     char nom[MAX_LENGTH];
+    char password[MAX_LENGTH];
     char cognom1[MAX_LENGTH];
     char cognom2[MAX_LENGTH];
     int edat;
@@ -29,10 +30,12 @@ int select_option();
 
 int print_option(int option, user_list *Llista);
 
-void emmagatzema_dades(User *usuari,user_list *Llista);
+void emmagatzema_dades(User *usuari);
 
 void print_users(user_list *llista_usuaris);
 
 void afegir_usuari(user_list* llista, User* usuari);
+
+void checkPassword(User *usuari);
 
 #endif //EDA_P_MENU_H
