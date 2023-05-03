@@ -44,12 +44,12 @@ int print_option(int option, user_list *Llista){
         printf("\n---Quin usuari ets?---\n");
         print_users(Llista);
         scanf("%s", usuari);
-        User *current = Llista->head;
+        User *current = Llista -> head;
         while (current != NULL) {
-            if (strcmp(usuari, current->nom) == 0) {
+            if (strcmp(usuari, current -> nom) == 0) {
                 checkPassword(current);
             }
-            current = current->next;
+            current = current -> next;
         }
         printf("\n");
         printf("---| 1. Enviar solicituds d'amistat   |---\n");
@@ -64,46 +64,46 @@ int print_option(int option, user_list *Llista){
 
 void emmagatzema_dades(User *usuari) {
     printf("Introdueix el teu nom: \n");
-    scanf("%s", usuari->nom);
+    scanf("%s", usuari -> nom);
     printf("Introdueix la contrasenya: \n");
-    scanf("%s", usuari->password);
+    scanf("%s", usuari -> password);
     printf("Introdueix el teu primer cognom: \n");
-    scanf("%s", usuari->cognom1);
+    scanf("%s", usuari -> cognom1);
     printf("Introdueix el teu segon cognom: \n");
-    scanf("%s", usuari->cognom2);
+    scanf("%s", usuari -> cognom2);
     printf("Introdueix la teva edat: \n");
-    scanf("%d", &usuari->edat);
+    scanf("%d", &usuari -> edat);
     printf("Introdueix el teu correu electronic: \n");
-    scanf("%s", usuari->correu);
+    scanf("%s", usuari -> correu);
     printf("Introdueix la teva ubicacio: \n");
-    scanf("%s", usuari->ubi);
+    scanf("%s", usuari -> ubi);
     printf("Introdueix els teus 5 gustos preferits (un per linia):\n");
-    scanf("%s", usuari->gust1);
-    scanf("%s", usuari->gust2);
-    scanf("%s", usuari->gust3);
-    scanf("%s", usuari->gust4);
-    scanf("%s", usuari->gust5);
-    usuari->next = NULL;
+    scanf("%s", usuari -> gust1);
+    scanf("%s", usuari -> gust2);
+    scanf("%s", usuari -> gust3);
+    scanf("%s", usuari -> gust4);
+    scanf("%s", usuari -> gust5);
+    usuari -> next = NULL;
 }
 
 void afegir_usuari(user_list* llista, User* usuari) {
-    if (llista->head == NULL) {
-        llista->head = usuari;
+    if (llista -> head == NULL) {
+        llista -> head = usuari;
     } else {
-        User* temp = llista->head;
-        while (temp->next != NULL) {
-            temp = temp->next;
+        User* temp = llista -> head;
+        while (temp -> next != NULL) {
+            temp = temp -> next;
         }
-        temp->next = usuari;
+        temp -> next = usuari;
     }
-    llista->num_persones++;
+    llista -> num_persones++;
 }
 
 void print_users(user_list *Llista) {
-    User *current = Llista->head;
+    User *current = Llista -> head;
     while (current != NULL) {
-        printf("          |    %s    |\n", current->nom);
-        current = current->next;
+        printf("          |    %s    |\n", current -> nom);
+        current = current -> next;
     }
     printf("\n");
 }
@@ -116,8 +116,8 @@ void checkPassword(User *usuari) {
         printf("Introdueix la contrasenya: ");
         scanf("%s", input);
 
-        if (strcmp(input, usuari->password) == 0) {
-            printf("Benvingut %s!,\n",usuari->nom);
+        if (strcmp(input, usuari -> password) == 0) {
+            printf("Benvingut %s!,\n",usuari -> nom);
             correct = 1;
         } else {
             printf("Contrasenya incorrecta. Intenta-ho de nou.\n");
